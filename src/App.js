@@ -4,7 +4,6 @@ import Movie from "./components/Movie";
 
 const FEATURED_API = process.env.REACT_APP_API_KEY_ENV;
 
-// const IMG_API = process.env.IMG_API_ENV;
 // const SEARCH_API = process.env.IMG_API_ENV;
 
 function App() {
@@ -21,7 +20,17 @@ function App() {
       });
   }, []);
 
-  return <div>{movies.length > 0 && movies.map((movie) => <Movie />)}</div>;
+  return (
+    <>
+      <header>
+        <input className="search" type="search" placeholder="Search..." />
+      </header>
+      <div className="movie-container">
+        {movies.length > 0 &&
+          movies.map((movie) => <Movie key={movie.id} {...movie} />)}
+      </div>
+    </>
+  );
 }
 
 export default App;
